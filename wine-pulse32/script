@@ -1,0 +1,10 @@
+desc="Fixes sound in wine applications by installing lib32-lubpulse"
+creator="BiteDasher"
+version="1.0"
+packages=('lib32-libpulse')
+check() {
+ispe lib32-libpulse && exitcheck "Package already installed."
+}
+action() {
+:
+}

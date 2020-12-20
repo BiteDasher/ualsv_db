@@ -1,0 +1,11 @@
+desc="Turns off the beeping thing (PC Speaker)"
+creator="BiteDasher"
+version="1.0"
+action() {
+cat <<EOF | cat_redirect /etc/modprobe.d/pcspkr.conf sudo
+blacklist pcspkr
+EOF
+}
+restore() {
+sendnull sudo rm /etc/modprobe.d/pcspkr.conf
+}

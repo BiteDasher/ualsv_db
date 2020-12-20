@@ -1,0 +1,11 @@
+desc="Fixes 'dummy output' on ALSA / PulseAudio on Intel sound cards"
+creator="BiteDasher"
+version="1.0"
+action() {
+cat <<EOF | cat_redirect /etc/modprobe.d/alsa-dummy.conf sudo
+options snd-hda-intel model=auto
+EOF
+}
+restore() {
+sendnull sudo rm /etc/modprobe.d/alsa-dummy.conf
+}

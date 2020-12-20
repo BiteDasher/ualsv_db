@@ -1,0 +1,26 @@
+desc="Installs a dark theme like Adwaita for qt5 applications"
+creator="BiteDasher"
+version="1.0"
+aur=('adwaita-qt')
+_file=/etc/environment
+_file2="$HOME/.config/qt5ct/qt5ct.conf"
+check() {
+if grepfile "QT_QPA_PLATFORMTHEME=qt5ct" $_file && grepfile "^style=Adwaita-Dark" $_file2; then
+	exitcheck "Patch already applied"
+fi
+}
+action() {
+if grepfile "QT_QPA_PLATFORMTHEME=.*" $_file; then
+	dline "QT_QPA_PLATFORMTHEME" $_file sudo
+else
+echo "QT_QPA_PLATFORMTHEME=qt5ct" | cat_redirect_a $_file sudo
+fi
+if grepfile "^style=.*" $_file2; then
+	sed "s/^style=.*/style=Adwaita-Dark/g" -i $_file2
+else
+	ialine "\[Appearance\]" "style=Adwaita-Dark" $_file2
+fi
+}
+restore() {
+dline "QT_QPA_PLATFORMTHEME" $_file
+}

@@ -1,0 +1,11 @@
+desc="Fixes the launch for old versions of minecraft (including Forge), by installing 8 java (Oracle JRE, AUR)"
+creator="BiteDasher"
+version="1.0"
+packages=('xorg-xrandr')
+aur=('jre8')
+check() {
+ispe jre8 && exitcheck "Package already installed."
+}
+action() {
+:
+}
