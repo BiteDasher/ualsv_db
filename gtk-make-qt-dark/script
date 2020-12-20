@@ -1,6 +1,7 @@
 desc="Installs a dark theme like Adwaita for qt5 applications"
 creator="BiteDasher"
 version="1.0"
+packages=('qt5ct')
 aur=('adwaita-qt')
 _file=/etc/environment
 _file2="$HOME/.config/qt5ct/qt5ct.conf"
