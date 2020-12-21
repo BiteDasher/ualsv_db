@@ -20,7 +20,7 @@ qt5ct &
 sleep 1
 killall qt5ct
 if grepfile "^style=.*" $_file2; then
-	sed "s/^style=.*/style=Adwaita-Dark/g" -i $_file2
+	sed "1s/^style=.*/style=Adwaita-Dark/g" -i $_file2
 else
 	ialine "\[Appearance\]" "style=Adwaita-Dark" $_file2
 fi
