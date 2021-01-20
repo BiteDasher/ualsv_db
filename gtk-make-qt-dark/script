@@ -16,7 +16,6 @@ if grepfile "QT_QPA_PLATFORMTHEME=.*" $_file; then
 else
 echo "QT_QPA_PLATFORMTHEME=qt5ct" | cat_redirect_a $_file sudo
 fi
-killall qt5ct
 if [ -f "$_file2" ]; then
 	if grepfile "^style=.*" "$_file2"; then
 		sed "1s/^style=.*/style=Adwaita-Dark/g" -i "$_file2"
@@ -24,7 +23,7 @@ if [ -f "$_file2" ]; then
 		ialine "\[Appearance\]" "style=Adwaita-Dark" "$_file2"
 	fi
 else
-	cat <<EOF | cat_redirect_a "$_file2"
+	cat <<EOF | cat_redirect "$_file2"
 [Appearance]
 style=Adwaita-Dark
 
