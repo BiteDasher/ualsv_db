@@ -4,8 +4,8 @@ version="1.2"
 packages=('xorg-xrandr')
 aur=('jre8')
 check() {
-ispe jre8 && msg "Applying java environment" && sudo archlinux-java set java-8-jdk/jre
-ispe jre8 && exitcheck "Package already installed."
+ispe jre8 null && msg "Applying java environment" && sudo archlinux-java set java-8-jdk/jre
+ispe jre8 null && exitcheck "Package already installed."
 }
 action() {
 msg "Applying java environment" && sudo archlinux-java set java-8-jdk/jre

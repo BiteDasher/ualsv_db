@@ -3,8 +3,8 @@ creator="BiteDasher"
 version="2.0"
 packages=('jre8-openjdk' 'xorg-xrandr')
 check() {
-ispe jre8-openjdk && msg "Applying java environment" && sudo archlinux-java set java-8-openjdk/jre
-ispe jre8-openjdk && exitcheck "Package already installed."
+ispe jre8-openjdk null && msg "Applying java environment" && sudo archlinux-java set java-8-openjdk/jre
+ispe jre8-openjdk null && exitcheck "Package already installed."
 }
 action() {
 msg "Applying java environment"
