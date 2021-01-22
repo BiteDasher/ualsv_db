@@ -1,0 +1,21 @@
+desc="Removes PulseAudio and replaces it with PipeWire"
+creator="BiteDasher"
+version="1.0"
+packages=('pipewire' 'pipewire-alsa' 'pipewire-pulse')
+check() {
+ispe pipewire-pulse && exitcheck "Patch already applied."
+}
+action() {
+enable_service pipewire
+enable_service pipewire-pulse
+sudo systemctl --global enable pipewire{,-pulse}
+systemctl --user enable pipewire{,-pulse}
+msg 'Now, reboot'
+}
+restore() {
+instpkg pulseaudio
+disable_service pipewire
+disable_service pipewire-pulse
+sudo systemctl --global disable pipewire{,-pulse}
+systemctl --user disable pipewire{,-pulse}
+}
