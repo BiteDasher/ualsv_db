@@ -6,16 +6,13 @@ check() {
 ispe pipewire-pulse null && exitcheck "Patch already applied."
 }
 action() {
-enable_service pipewire
-enable_service pipewire-pulse
 sudo systemctl --global enable pipewire{,-pulse}
 systemctl --user enable pipewire{,-pulse}
 msg 'Now, reboot'
 }
 restore() {
-instpkg pulseaudio
-disable_service pipewire
-disable_service pipewire-pulse
-sudo systemctl --global disable pipewire{,-pulse}
-systemctl --user disable pipewire{,-pulse}
+instpkg pulseaudio pulseaudio-bluetooth
+systemctl --global disable pipewire{,-pulse}
+rm -rf $HOME/.config/systemd/user/default.target.wants/pipewire{,-pulse}.service
+rm -rf $HOME/.config/systemd/user/default.target.wants/pipewire{,-pulse}.socket
 }
