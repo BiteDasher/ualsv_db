@@ -3,7 +3,7 @@ creator="BiteDasher"
 version="1.0"
 packages=('pipewire' 'pipewire-alsa' 'pipewire-pulse')
 check() {
-ispe pipewire-pulse && exitcheck "Patch already applied."
+ispe pipewire-pulse null && exitcheck "Patch already applied."
 }
 action() {
 enable_service pipewire
