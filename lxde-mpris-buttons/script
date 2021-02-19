@@ -1,0 +1,70 @@
+desc="Enable LXDE media keyboard support for MPRIS"
+creator="BiteDasher"
+version="1.0"
+#packages=('openbox')
+packages=('playerctl')
+_file="$HOME/.config/openbox/lxde-rc.xml"
+action() {
+if isfe "$_file" null; then
+	mkdir "$CURDIR"/files
+	cp -ax "$_file" "$CURDIR/files/lxde-rc.xml"
+else
+	mkdir "$HOME/.config/openbox"
+	touch ~/.config/openbox/lxde-rc.xml
+fi
+cat <<EOF | cat_redirect_a "$HOME"/.config/openbox/lxde-rc.xml
+
+<keybind key="XF86AudioNext">
+        <action name="Execute">
+                <command>playerctl next</command>
+        </action>
+</keybind>
+
+<keybind key="XF86AudioPlay">
+        <action name="Execute">
+                <command>playerctl play-pause</command>
+        </action>
+</keybind>
+
+<keybind key="XF86AudioPrev">
+        <action name="Execute">
+                <command>playerctl< previous/command>
+        </action>
+</keybind>
+
+    
+<keybind key="XF86AudioLowerVolume">
+      <action name="Execute">
+        <startupnotify>
+          <enabled>true</enabled>
+          <name>volumedown</name>
+        </startupnotify>
+        <command>amixer -c 0 set Master 5%- unmute</command>
+      </action>
+</keybind>
+
+<keybind key="XF86AudioRaiseVolume">
+      <action name="Execute">
+        <startupnotify>
+          <enabled>true</enabled>
+          <name>volumeup</name>
+        </startupnotify>
+        <command>amixer -c 0 set Master 5%+ unmute</command>
+      </action>
+</keybind>
+
+<keybind key="XF86AudioMute">
+      <action name="Execute">
+        <startupnotify>
+          <enabled>true</enabled>
+          <name>volumedown</name>
+        </startupnotify>
+        <command>amixer -c 0 set Master toggle</command>
+      </action>
+</keybind>
+EOF
+}
+restore() {
+isfe "$CURDIR"/files/lxde-rc.conf null && cp -ax "$CURDIR"/files/lxde-rc.conf "$_file"
+return 0
+}
