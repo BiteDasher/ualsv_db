@@ -8,7 +8,7 @@ action() {
 if isfe "$_file" null; then
 	mkdir "$CURDIR"/files
 	cp -ax "$_file" "$CURDIR/files/lxde-rc.xml"
-	dlinex '</openbox_config>' "$HOME"/.config/openbox/lxde-rc.xml
+	dlinex '<\/openbox_config>' "$HOME"/.config/openbox/lxde-rc.xml
 else
 	mkdir "$HOME/.config/openbox"
 	touch "$_file"
@@ -35,7 +35,7 @@ cat <<EOF | cat_redirect_a "$HOME"/.config/openbox/lxde-rc.xml
 
 <keybind key="XF86AudioPrev">
         <action name="Execute">
-                <command>playerctl< previous/command>
+                <command>playerctl previous</command>
         </action>
 </keybind>
 
