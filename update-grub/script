@@ -1,0 +1,11 @@
+desc="Creates an update-grub file like in ubuntu"
+creator="BiteDasher"
+version="1.0"
+packages=('grub')
+action() {
+sudo install -Dm755 "$CURDIR"/files/update-grub /usr/bin/update-grub
+sudo ln -s update-grub /usr/bin/update-grub2
+}
+restore() {
+rm /usr/bin/update-grub{,2}
+}
