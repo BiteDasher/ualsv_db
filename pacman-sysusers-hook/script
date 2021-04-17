@@ -1,6 +1,6 @@
 desc="Adds a hook that removes unnecessary users after deleting programs"
 creator="BiteDasher"
-version="1.0"
+version="1.1"
 packages=('systemd')
 get=("wget:-:https://raw.githubusercontent.com/BiteDasher/some_stuff/master/systemd-sysusers-hook/sysusers"
      "wget:-:https://github.com/BiteDasher/some_stuff/blob/master/systemd-sysusers-hook/99-systemd-sysusers.hook"
@@ -14,7 +14,7 @@ action() {
 	cd "$getdir"
 	sudo install -Dm755 sysusers		          /usr/share/libalpm/scripts/sysusers
 	sudo install -Dm644 99-systemd-sysusers.hook      /usr/share/libalpm/hooks/99-systemd-sysusers.hook
-	sudo install -Dm644 99-systemd-sysusers-post.hook /usr/share/libalpm/hooks/99-systemd-sysusers.hook
+	sudo install -Dm644 99-systemd-sysusers-post.hook /usr/share/libalpm/hooks/99-systemd-sysusers-post.hook
 }
 restore() {
 	for _file in "/usr/share/libalpm/scripts/sysusers" "/usr/share/libalpm/hooks/99-systemd-sysusers.hook" "/usr/share/libalpm/hooks/99-systemd-sysusers-post.hook"; do
